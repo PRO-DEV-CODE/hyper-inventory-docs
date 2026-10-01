@@ -1,6 +1,6 @@
 # Export
 
-Hyper_Inventory มี 24 export แบ่งเป็น 6 กลุ่ม และมี 24 resource ในเซิร์ฟเรียกใช้อยู่แล้ว ใช้ตารางแรกเลือก export ตามเมนูที่กำลังทำ แล้วกดเข้าหน้ากลุ่มเพื่อดู parameter และตัวอย่างโค้ด
+Hyper_Inventory มี 24 export แบ่งเป็น 6 กลุ่ม และมี 25 resource ในเซิร์ฟเรียกใช้อยู่แล้ว ใช้ตารางแรกเลือก export ตามเมนูที่กำลังทำ แล้วกดเข้าหน้ากลุ่มเพื่อดู parameter และตัวอย่างโค้ด
 
 ```lua
 exports["Hyper_Inventory"]:<ชื่อ export>(...)
@@ -12,10 +12,12 @@ exports["Hyper_Inventory"]:<ชื่อ export>(...)
 | --- | --- | --- | --- |
 | ร้านค้า, ตลาด, รางวัล, กาชา — ให้การ์ดไอเทมสีตรงกับกระเป๋า | `GetRarityInfo` | ทั้งสอง | Hyper_Shop, Hyper_Market, Hyper_Airdrop |
 | tooltip / การ์ดรายละเอียดไอเทมแบบเดียวกับกระเป๋า | `GetItemDetail`, `GetItemDescription`, `GetItemCategoryInfo` | ทั้งสอง | Hyper_Crafting |
-| HUD หรือ UI ที่ต้องใช้สี rarity ทั้งชุด | `GetRarityPalette` | ทั้งสอง | Hyper_Bountyhunt |
+| HUD หรือ UI ที่ต้องใช้สี rarity ทั้งชุด | `GetRarityPalette` | ทั้งสอง | Hyper_Bountyhunt, Hyper_Gacha |
 | ท้ายรถ, ตู้เซฟ, ตู้บ้าน ที่เก็บของลง DB เอง | `OpenStashExternal` + `RefreshStash` | server | Hyper_Garage, Hyper_Vault |
+| เปิดกระเป๋าผู้เล่นคนอื่นเป็นตู้ (แอดมิน, ปล้น/ค้นตัว) | `OpenStashExternal` + `RefreshStash` | server | Hyper_Admin, Hyper_Thief |
 | ตู้ชั่วคราว ไม่ต้องเซฟ | `OpenStash` | server | — |
 | ติดตรา "ใช้งานอยู่" บนไอเทม (ลำโพง, ของติดตัว) | `AddBadge` / `RemoveBadge` | server | Hyper_Music, Hyper_Attacher |
+| ไอเทมมีวันหมดอายุ → ขึ้นแผง "หมดอายุ" | `AddBadge` key `expired` | server | Hyper_Expire |
 | เปิดเมนูของตัวเอง (NUI) ทับกระเป๋า | `CloseInventory` ก่อนเปิด | client | Hyper_Skinui, Hyper_Thief, Hyper_Profilestatus |
 | ซื้อ/ขาย/โอนรถ | `InvalidateKeys` | server | Hyper_Gang |
 | ร้านเสื้อผ้า, กาชาเครื่องประดับ | `InvalidateAccessories` | server | Hyper_Skinui |
@@ -38,18 +40,20 @@ exports["Hyper_Inventory"]:<ชื่อ export>(...)
 | --- | --- | --- |
 | Hyper_Garage | OpenStashExternal, RefreshStash | ท้ายรถ |
 | Hyper_Vault | OpenStashExternal, RefreshStash | ตู้เซฟ |
+| Hyper_Admin | OpenStashExternal, RefreshStash, GetRarityInfo | เปิดกระเป๋าผู้เล่นจากเมนูแอดมิน |
 | Hyper_Music | AddBadge, RemoveBadge | ตราลำโพงที่กำลังเปิด |
 | Hyper_Attacher | AddBadge, RemoveBadge, GetRarityInfo | ตราของที่ติดตัว |
 | Hyper_Weaponskin | SetSkinnable, ApplyCustomImage, ResetCustomImage | ปุ่ม "สกิน" และรูปการ์ดอาวุธ |
 | Hyper_Skinui | CloseInventory, InvalidateAccessories | ร้านเสื้อผ้า |
-| Hyper_Thief | CloseInventory | ค้นตัว |
+| Hyper_Thief | OpenStashExternal, RefreshStash, CloseInventory | ปล้น / ค้นตัว — เปิดกระเป๋าเหยื่อเป็นตู้ |
+| Hyper_Expire | AddBadge, RemoveBadge | ตราหมดอายุ → แผง "หมดอายุ" |
 | Hyper_Profilestatus | CloseInventory, GetRarityInfo | โปรไฟล์ / เจม |
 | Hyper_Gang | InvalidateKeys | โอนรถแก๊ง |
 | Hyper_Crafting | GetItemDetail, GetItemDescription, GetItemCategoryInfo, GetRarityInfo | tooltip สูตรคราฟต์ |
-| Hyper_Gacha | HasRarity, GetRarityColor | สีรางวัลกาชา |
+| Hyper_Gacha | HasRarity, GetRarityColor, GetRarityPalette | สีรางวัลกาชา |
 | Hyper_Bountyhunt | GetRarityPalette | สี HUD |
 | Hyper_Fishing | GetRarity, GetRarityInfo | สีปลา |
-| Hyper_Shop, Hyper_Market, Hyper_Economy, Hyper_Notifyall, Hyper_Admin, Hyper_Jobagency, Hyper_Event, Hyper_Airdrop, Hyper_Warzone, Hyper_TradingJobs, Hyper_Heist | GetRarityInfo | สีการ์ดไอเทม |
+| Hyper_Shop, Hyper_Market, Hyper_Economy, Hyper_Notifyall, Hyper_Jobagency, Hyper_Event, Hyper_Airdrop, Hyper_Warzone, Hyper_TradingJobs, Hyper_Heist | GetRarityInfo | สีการ์ดไอเทม |
 
 ยังไม่มี resource ไหนเรียก OpenStash, GetStashItems, SetStashItems, OpenInventory, IsOpen และ SetVehicleKeys
 

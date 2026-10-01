@@ -28,6 +28,6 @@ exports["Hyper_Inventory"]:RemoveBadge(playerId, { name = "speaker", key = "spea
 | --- | --- |
 | ลำโพง / วิทยุที่เปิดอยู่ | ติดตอนเปิด ถอดตอนปิด (Hyper_Music) |
 | ของติดตัว / แฟชั่น | ติดตอนสวม ถอดตอนถอด (Hyper_Attacher) |
-| ไอเทมมีวันหมดอายุ | key `expired` → ไปแผง หมดอายุ |
+| ไอเทมมีวันหมดอายุ | key `expired` → ไปแผง หมดอายุ (Hyper_Expire) |
 
 Badge เก็บใน RAM ต่อผู้เล่น — ผู้เล่นออกแล้วหาย ต้องติดใหม่ตอนเข้าเกม
