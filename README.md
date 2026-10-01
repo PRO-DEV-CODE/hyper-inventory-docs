@@ -2,7 +2,7 @@
 
 ![](.gitbook/assets/01_inventory.png)
 
-Hyper_Inventory คือระบบกระเป๋า (Inventory HUD) สำหรับเซิร์ฟเวอร์ FiveM ที่ใช้เฟรมเวิร์ก ESX เวอร์ชันปัจจุบัน 0.7.0 เขียนใหม่จาก esx_inventoryhud ในสไตล์ Hyper (teal-glass UI) และพอร์ตฟีเจอร์จาก nc_inventory มาครบ
+Hyper_Inventory คือระบบกระเป๋า (Inventory HUD) สำหรับเซิร์ฟเวอร์ FiveM ที่ใช้เฟรมเวิร์ก ESX เวอร์ชันปัจจุบัน 0.7.0 เขียนใหม่จาก esx_inventoryhud ในสไตล์ Hyper (teal-glass UI)
 
 ระบบรวมทุกอย่างที่ผู้เล่นทำกับของไว้ในหน้าจอเดียว: ดูของ ใช้ มอบ ทิ้ง เทรด เก็บเข้าตู้ สวมเครื่องแต่งกาย และดูกุญแจรถ ทุก action ที่มีมูลค่าตัดสินที่ฝั่ง server (server-authoritative) และเชื่อมระบบกันโกง Hyper_Check
 
